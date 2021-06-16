@@ -6,4 +6,4 @@ A new learnig experience with AR.
 ```Class 7 -> Subject 0 -> Chapter 15 -> Figure 1```
 
 ### Model
-3-Models with materials
+3D Models with materials
