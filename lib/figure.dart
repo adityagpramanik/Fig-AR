@@ -28,7 +28,7 @@ class _FigureState extends State<Figure> {
   void _addToucano(ArCoreHitTestResult plane) {
     final toucanNode = ArCoreReferenceNode(
         name: "Toucano",
-        objectUrl: "https://raw.githubusercontent.com/adityagpramanik/D-Vis/main/cube.gltf",
+        objectUrl: "https://github.com/adityagpramanik/D-Vis/blob/main/cube.gltf",
         // objectUrl:
         //     "https://github.com/KhronosGroup/glTF-Sample-Models/raw/master/2.0/Duck/glTF/Duck.gltf",
         position: plane.pose.translation,
