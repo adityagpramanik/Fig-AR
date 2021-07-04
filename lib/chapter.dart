@@ -1,10 +1,12 @@
 import 'package:figar/figure.dart';
+import 'package:figar/myHome.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Chapter extends StatefulWidget {
-  final int chapt;
-  Chapter({Key key, @required this.chapt}) : super(key: key);
+  final int chap;
+  final int std, sub;
+  Chapter({@required this.chap, @required this.std, @required this.sub});
 
   @override
   _ChapterState createState() => _ChapterState();
@@ -16,7 +18,7 @@ class _ChapterState extends State<Chapter> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Chapter ${widget.chapt}"),
+        title: Text("Chapter ${widget.chap}"),
         centerTitle: true,
       ),
       body: GridView.count(
@@ -28,21 +30,33 @@ class _ChapterState extends State<Chapter> {
               width: 140,
               child: TextButton(
                 onPressed: () {
-                  print("Subject ${index + 1}");
-                  if (index != 0) {
+                  bool check = false;
+                  for (int i = 0; i < figures.length; i++) {
+                    if (figures["model${i + 1}"]["class"] == widget.std &&
+                        figures["model${i + 1}"]["sub"] == widget.sub &&
+                        figures['model${i + 1}']["chap"] == widget.chap &&
+                        figures['model${i + 1}']['fig'] == index + 1) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Figure(
+                                    model: 'model${i+1}',
+                                    fig: index +1,
+                                  )));
+                      check = true;
+                      break;
+                    }
+                  }
+                  print("Chapter ${index + 1}");
+                  if (!check) {
                     Fluttertoast.showToast(
                         msg: "Empty shelves!",
                         toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.CENTER,
+                        gravity: ToastGravity.BOTTOM,
                         timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.red,
+                        backgroundColor: Colors.black26,
                         textColor: Colors.white,
                         fontSize: 16.0);
-                  } else {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Figure(fig: 0)));
                   }
                 },
                 style: TextButton.styleFrom(

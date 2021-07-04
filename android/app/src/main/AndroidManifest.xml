@@ -5,7 +5,8 @@
    <uses-feature android:name="android.hardware.camera.ar" />
    <application
         android:label="figar"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
